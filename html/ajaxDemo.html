@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AjaxDemo</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <script src="../bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+
+<div id="mydiv"> <h2>Ajax修饰该文本内容</h2></div>
+<button type="button" class="" onclick="loadXmlDoc()">ajax请求</button>
+</body>
+
+<script>
+    var xmlhttp;
+    function loadXmlDoc() {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        if (window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHttp")
+        }
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+            }
+            xmlhttp.open("GET","/try/ajax/ajax_info.txt",true); //open("method","url",async)
+            xmlhttp.send();
+        }
+
+    }
+</script>
+</html>
